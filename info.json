@@ -1,0 +1,8 @@
+{
+  "name": "diplomacy",
+  "version": "0.12.0",
+  "title": "Diplomacy",
+  "author": "Y.Petremann",
+  "description": "Permit to manage forces and diplomacy.",
+  "dependencies": ["base >= 0.12.29"]
+}
