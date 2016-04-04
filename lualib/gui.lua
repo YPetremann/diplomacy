@@ -41,9 +41,9 @@ gui.get = function(nodes)
   end
   return gui.validate(widget)
 end
-gui.destroy = function(widget, nodes)
+gui.destroy = function(nodes)
   -- destroy widget by following path if reachable
-  local element = gui.get(widget,nodes)
+  local element = gui.get(nodes)
   if element then element.destroy() end
 end
 gui.empty = function(widget, list)
