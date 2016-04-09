@@ -463,9 +463,6 @@ end)
 events.register(defines.events.on_player_created, 1, function(event)
   local player = game.players[event.player_index]
   show_button(player)
-  ---[[dev
-  show_menu(player)
-  --[[]]--]]
   update_all(player)
 end)
 events.register(defines.events.on_gui_click, 1, function(event)
