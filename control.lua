@@ -456,7 +456,7 @@ events.register(defines.events,1,function(event) -- DEV
   if (#game.players > 0) and (#global.buffer > 0) then
     print_event = table.remove(global.buffer,1)
     print_event.name = events[event.name]
-    print_all(serpent.line(print_event,{comment=false,compact=true,numformat="%.2g"}))
+    --print_all(serpent.line(print_event,{comment=false,compact=true,numformat="%.2g"}))
   end
 end)
 --[[]]--]]
