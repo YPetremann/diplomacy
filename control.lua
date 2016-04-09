@@ -2,7 +2,7 @@ require("util")
 require("defines")
 require("lualib.gui")
 require("lualib.events")
-global.data = {tab={},as_player={},as_force={}, auth_tokens={}}
+
 function inTable(tbl, item) for _, value in ipairs(tbl) do if value == item then return true end end return false end
 function print_all(message) for _, player in pairs(game.players) do player.print(message) end end
 -- global
@@ -11,10 +11,14 @@ function get_player(event)
   if event == nil then for _,v in ipairs(split(debug.traceback())) do print_all(v) end end
   return game.players[event.player_index]
 end
-function get_as_player(player) return game.get_player(global.data.as_player[player] or player.name) end
+function get_as_player(player)
+  player = player.name or player
+  return game.get_player(global.data.as_player[player] or player)
+end
 function set_as_player(player, as_player)
-  if as_player.name then as_player = as_player.name end
-  global.data.as_player[player.name] = as_player
+  player = player.name or player
+  as_player = as_player.name or as_player
+  global.data.as_player[player] = as_player
 end
 function get_as_force(player) return game.forces[global.data.as_force[player.name] or player.force.name] end
 function set_as_force(player, as_force)
@@ -420,7 +424,7 @@ function on_gui_click_diplomacy_player_set_password(event, params) -- PERM
   local newpass = gui.get{player.gui.left, "diplomacy_main", "tab_area", "settings", "admin", "change_password",  "new_password"}.text
   remote.call("auth", "set_password", player.name, newpass, oldpass)
 end
-script.on_load(function(event) -- OK
+script.on_load(function() -- OK
   if not global.data then global.data = {} end
   if not global.data.as_player then global.data.as_player = {} end
   if not global.data.as_force then global.data.as_force = {} end
@@ -428,6 +432,9 @@ script.on_load(function(event) -- OK
   if not global.data.auth_tokens then global.data.auth_tokens = {} end
 end)
 ---[[
+script.on_init(function()
+  global.data = {tab={},as_player={},as_force={}, auth_tokens={}}
+end)
 events.register(defines.events,1,function(event) -- DEV
   if not global.buffer then global.buffer = {} end
   events = { [0] = "on_tick",                          [1] = "on_gui_click",                [2] = "on_entity_died",
