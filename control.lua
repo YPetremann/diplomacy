@@ -420,6 +420,15 @@ function on_gui_click_diplomacy_player_set_password(event, params) -- PERM
   local newpass = gui.get{player.gui.left, "diplomacy_main", "tab_area", "settings", "admin", "change_password",  "new_password"}.text
   remote.call("auth", "set_password", player.name, newpass, oldpass)
 end
+function on_gui_click_diplomacy_force_player_button(event, params)
+  local player = get_player(event)
+  local as_player = params[1]
+  if check_admin(player) then
+    set_as_player(player, as_player)
+    update_all(player)
+  end
+end
+
 script.on_load(function(event) -- OK
   if not global.data then global.data = {} end
   if not global.data.as_player then global.data.as_player = {} end
