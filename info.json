@@ -4,5 +4,5 @@
   "title": "Diplomacy",
   "author": "Y.Petremann",
   "description": "Permit to manage forces and diplomacy.",
-  "dependencies": ["base >= 0.12.29"]
+  "dependencies": ["base >= 0.12.29", "?flsw_auth"]
 }
