@@ -1,8 +1,8 @@
 {
   "name": "diplomacy",
-  "version": "0.12.1",
-  "title": "Diplomacy",
+  "version": "0.12.2",
+  "title": "Diplomacy (FLSW fork)",
   "author": "Y.Petremann",
   "description": "Permit to manage forces and diplomacy.",
-  "dependencies": ["base >= 0.12.29"]
+  "dependencies": ["base >= 0.12.29", "?flsw_auth"]
 }
