@@ -397,6 +397,7 @@ end
 function on_gui_click_diplomacy_settings_player_color(event, params) -- PERM
   local player = game.players[event.player_index]
   local as_player = get_as_player(player)
+  if not check_admin(player) and player.name ~= as_player.name then return end
   local color = params
   as_player.color = color
   update_all(player)
@@ -404,6 +405,7 @@ end
 function on_gui_click_diplomacy_settings_player_color_apply(event, params) -- PERM
   local player = game.players[event.player_index]
   local as_player = get_as_player(player)
+  if not check_admin(player) and player.name ~= as_player.name then return end
   local color = {
     r=gui.get{player.gui.left, "diplomacy_main", "tab_area", "settings", "player", "table", "red"}.text,
     g=gui.get{player.gui.left, "diplomacy_main", "tab_area", "settings", "player", "table", "green"}.text,
