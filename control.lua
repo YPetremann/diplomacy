@@ -9,7 +9,7 @@ function print_all(message) for _, player in pairs(game.players) do player.print
 
 function get_player(event)
   if event == nil then for _,v in ipairs(split(debug.traceback())) do print_all(v) end end
-  return game.players[event.player_index]
+  return game.get_player(event.player_index)
 end
 function get_as_player(player) return game.get_player(global.data.as_player[player] or player.name) end
 function set_as_player(player, as_player)
