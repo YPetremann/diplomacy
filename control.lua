@@ -344,6 +344,15 @@ function on_gui_click_diplomacy_force_merge_button(event, params) -- PERM
 
   update_all()
 end
+
+function on_gui_click_diplomacy_force_player_button(event, params)
+  local player = get_player(event)
+  local as_player = params[1]
+
+  set_as_player(player, as_player)
+  update_all(player)
+end
+
 function on_gui_click_diplomacy_diplomacy_change_button(event, params) -- PERM
   local player = get_player(event)
   local as_force = get_as_force(player)
