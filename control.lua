@@ -13,12 +13,12 @@ function get_player(event)
 end
 function get_as_player(player) return game.get_player(global.data.as_player[player] or player.name) end
 function set_as_player(player, as_player)
-  if as_player.name then as_player = as_player.name end 
+  if as_player.name then as_player = as_player.name end
   global.data.as_player[player.name] = as_player
 end
 function get_as_force(player) return game.forces[global.data.as_force[player.name] or player.force.name] end
 function set_as_force(player, as_force)
-  if as_force.name then as_force = as_force.name end 
+  if as_force.name then as_force = as_force.name end
   global.data.as_force[player.name] = as_force
 end
 function get_tab(player) return global.data.tab[player.name] or "settings" end
@@ -302,7 +302,7 @@ function on_gui_click_diplomacy_force_new_button(event, params) -- PERM
   local as_player = get_as_player(player)
   local force = gui.get{player.gui.left, "diplomacy_main", "tab_area", "forces", "table", "diplomacy_force_textfield"}.text
   local join = gui.get{player.gui.left, "diplomacy_main", "tab_area", "forces", "table", "diplomacy_force_checkbox"}.state
-  
+
   if force == "" then player.print({"create_force_no_name"}) return end
   if game.forces[force] then player.print({"create_force_exist"}) return end
   force = game.create_force(force)
@@ -366,7 +366,7 @@ function on_gui_click_diplomacy_settings_player_color_apply(event, params) -- PE
   on_gui_click_diplomacy_settings_player_color(event, color)
 end
 
-script.on_load(function(event) -- OK
+script.on_load(function() -- OK
   if not global.data then global.data = {} end
   if not global.data.as_player then global.data.as_player = {} end
   if not global.data.as_force then global.data.as_force = {} end
@@ -378,11 +378,11 @@ events.register(defines.events,1,function(event) -- DEV
   events = { [0] = "on_tick",                          [1] = "on_gui_click",                [2] = "on_entity_died",
              [3] = "on_picked_up_item",                [4] = "on_built_entity",             [5] = "on_sector_scanned",
              [6] = "on_player_mined_item",             [7] = "on_put_item",                 [8] = "on_rocket_launched",
-             [9] = "on_preplayer_mined_item",         [10] = "on_chunk_generated",         [11] = "on_player_crafted_item", 
+             [9] = "on_preplayer_mined_item",         [10] = "on_chunk_generated",         [11] = "on_player_crafted_item",
             [12] = "on_robot_built_entity",           [13] = "on_robot_pre_mined",         [14] = "on_robot_mined",
             [15] = "on_research_started",             [16] = "on_research_finished",       [17] = "on_player_rotated_entity",
             [18] = "on_marked_for_deconstruction",    [19] = "on_canceled_deconstruction", [20] = "on_trigger_created_entity",
-            [21] = "on_train_changed_state",          [22] = "on_player_created",          [23] = "on_resource_depleted", 
+            [21] = "on_train_changed_state",          [22] = "on_player_created",          [23] = "on_resource_depleted",
             [24] = "on_player_driving_changed_state", [25] = "on_force_created",           [26] = "on_forces_merging"}
   if event.name ~= defines.events.on_tick and event.name ~= defines.events.on_chunk_generated then
     if event.name == defines.events.on_gui_click then
@@ -422,7 +422,7 @@ events.register(defines.events.on_gui_click, 1, function(event)
     function_params = assert(loadstring("return "..string.sub(element, string.find(element, "%{")+0)))()
   end
   callback = _G["on_gui_click_"..function_name]
-  if type(callback)=="function" then 
+  if type(callback)=="function" then
     callback(event, function_params)
   end
 end)
