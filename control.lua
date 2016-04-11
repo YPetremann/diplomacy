@@ -11,11 +11,18 @@ function get_player(event)
   if event == nil then for _,v in ipairs(split(debug.traceback())) do print_all(v) end end
   return game.players[event.player_index]
 end
-function get_as_player(player) return game.get_player(global.data.as_player[player] or player.name) end
-function set_as_player(player, as_player)
-  if as_player.name then as_player = as_player.name end
-  global.data.as_player[player.name] = as_player
+
+function get_as_player(player)
+  player = player.name or player
+  return game.get_player(global.data.as_player[player] or player)
 end
+
+function set_as_player(player, as_player)
+  player = player.name or player
+  as_player = as_player.name or as_player
+  global.data.as_player[player] = as_player
+end
+
 function get_as_force(player) return game.forces[global.data.as_force[player.name] or player.force.name] end
 function set_as_force(player, as_force)
   if as_force.name then as_force = as_force.name end
