@@ -2,7 +2,7 @@ require("util")
 require("defines")
 require("lualib.gui")
 require("lualib.events")
-global.data = {tab={},as_player={},as_force={}}
+
 function inTable(tbl, item) for _, value in ipairs(tbl) do if value == item then return true end end return false end
 function print_all(message) for _, player in pairs(game.players) do player.print(message) end end
 -- global
@@ -365,6 +365,10 @@ function on_gui_click_diplomacy_settings_player_color_apply(event, params) -- PE
   }
   on_gui_click_diplomacy_settings_player_color(event, color)
 end
+
+script.on_init(function()
+    global.data = {tab={},as_player={},as_force={}}
+ end)
 
 script.on_load(function() -- OK
   if not global.data then global.data = {} end
