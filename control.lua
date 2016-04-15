@@ -372,7 +372,7 @@ script.on_load(function(event) -- OK
   if not global.data.as_force then global.data.as_force = {} end
   if not global.data.tab then global.data.tab = {} end
 end)
----[[
+--[[
 events.register(defines.events,1,function(event) -- DEV
   if not global.buffer then global.buffer = {} end
   events = { [0] = "on_tick",                          [1] = "on_gui_click",                [2] = "on_entity_died",
